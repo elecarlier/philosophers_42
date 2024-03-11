@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:10:54 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/05 17:55:19 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:47:00 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	check_input(char **argv)
 
 int	main(int argc, char *argv[])
 {
-	t_table table;
+	t_table	table;
+
 	if (argc < 5 || argc > 6)
 	{
 		print_error(0);
@@ -86,7 +87,8 @@ int	main(int argc, char *argv[])
 
 	parse_input(&table, argv);
 
-	printf("All good \n");
+	printf("### START DINNER ###\n");
+	begin_dinner(&table);
 	return (0);
 }
 

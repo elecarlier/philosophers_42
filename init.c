@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:56:23 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/05 19:19:33 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:46:40 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,26 @@ True = 1
 Pour chaque philo, sa fourchette droite vaut son id - 1
 (philo_pod + 1) % nbr_philo
 
+on change si odd/even
+
 */
+
 static void	assign_forks(t_philo *philo, t_fork *forks, int pos)
 {
 	int	nbr_philo;
 
-	nbr_philo = philo->table->nbr_philo;
+	nbr_philo = philo->table->nb_philo; //to make the code clean
+	if (philo->id % 2 == 0)
+	{
+		philo->first_fork = &forks[pos];
+		philo->second_fork = &forks[(pos + 1) % nbr_philo];
+	}
+	else
+	{
+		philo->second_fork = &forks[pos];
+		philo->first_fork = &forks[(pos + 1) % nbr_philo];
+	}
+
 
 }
 
@@ -39,11 +53,12 @@ static void	philo_init(t_table *table)
 	i = -1;
 	while (++i < table->nb_philo)
 	{
-		philo = table->philos + i;
+		philo = table->philos + i; //parcourt l'array des philos
 		philo->id = i + 1;
 		philo->count_meal = 0;
 		philo->is_full = 0;
 		philo->table = table;
+		assign_forks(philo, table->forks, i);
 	}
 
 }

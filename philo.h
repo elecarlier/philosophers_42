@@ -6,7 +6,7 @@
 /*   By: ecarlier <ecarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:35:38 by ecarlier          #+#    #+#             */
-/*   Updated: 2024/03/05 17:53:51 by ecarlier         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:46:38 by ecarlier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct s_philo
 	int	count_meal; //how many the philo has eaten
 	int	is_full;
 	long last_meal_time; //time passed from last meal
-	t_fork *left_fork;
-	t_fork *right_fork;
+	t_fork *first_fork;
+	t_fork *second_fork;
 	pthread_t thread_id; //philo == thread
 	t_table	*table;
 }			t_philo;
@@ -65,8 +65,12 @@ typedef struct s_table
 
 
 int	ft_atoi(const char *str);
+
 void	parse_input(t_table *table, char *argv[]);
+
+void	data_init(t_table *table);
 
 int	check_input(char **argv);
 
+void	begin_dinner(t_table *table);
 #endif
